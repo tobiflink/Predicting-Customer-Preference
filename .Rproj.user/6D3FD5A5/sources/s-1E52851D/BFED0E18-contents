@@ -1,0 +1,135 @@
+library(ggplot2)
+library(readr)
+library(ggplot2)
+library(binr)
+library(C50)
+library(caret)
+library(rpart)
+library(mlbench)
+library(pls)
+install.packages(binr)
+install.packages("C50")
+install.packages(c('caret', 'skimr', 'RANN', 'randomForest', 'fastAdaboost', 'gbm', 'xgboost', 'caretEnsemble', 'C50', 'earth'))
+summary(CompleteResponses)
+see_na<-is.na(CompleteResponses)
+summary(see_na)
+sum(see_na)
+CompleteResponses$elevel<-as.factor(CompleteResponses$elevel)
+CompleteResponses$car<-as.factor(CompleteResponses$car)
+CompleteResponses$zipcode<-as.factor(CompleteResponses$zipcode)
+CompleteResponses$brand<-as.factor(CompleteResponses$brand)
+ggplot(CompleteResponses,aes(x=salary, y=age, col=brand))+geom_point()
+CompleteResponses$age_bin<-cut(CompleteResponses$age,3)
+CompleteResponses$salary_bin<-cut(CompleteResponses$salary,7)
+head(CompleteResponses)
+CompleteResponses$age_bin<-as.factor(CompleteResponses$age_bin)
+CompleteResponses$salary_bin<-as.factor(CompleteResponses$salary_bin)
+head(CompleteResponses)
+ggplot(CompleteResponses,aes(x=salary_bin, y=age_bin, col=brand))+geom_point()
+features<-c("brand","age_bin","salary_bin")
+CompleteResponses2<-CompleteResponses[,features]
+head(CompleteResponses2)
+
+#CreatePArtition
+inTrain<-createDataPartition(y=CompleteResponses2$brand,
+                             p=.75,
+                             list=FALSE)
+str(inTrain)
+training<-CompleteResponses2[inTrain,]
+testing <-CompleteResponses2[-inTrain,]
+nrow(training)
+nrow(testing)
+set.seed(100)
+inTrain <- createDataPartition(y=CompleteResponses2$brand,
+                            p=.75,
+                            list = FALSE)
+trainData <-CompleteResponses2[inTrain,]
+testData<-CompleteResponses2[-inTrain,]
+nrow(training)
+nrow(testing)
+
+
+#### train model #####
+
+Tobi<- train(brand ~ .,
+             data = training,
+             method = "C5.0",
+             preProc = c("center", "scale"))
+install.packages("C50")
+install.packages(c5.0)
+install.packages("C.50")
+library(C50)
+Tobi<- train(brand ~ .,
+             data = training,
+             method = "C5.0",
+             tunelength=2,
+             preProc = c("center", "scale"))
+ctrl<-trainControl(method="repeatedcv",
+                   repeats=3)
+Tobi<- train(brand ~ .,
+             data = training,
+             method = "C5.0",
+             tunelength=2,
+             trControl=ctrl,
+             preProc = c("center", "scale"))
+ctrl<-trainControl(method="repeatedcv",
+                   repeats=3,
+                   classProbs = TRUE,
+                   summaryFunction=twoClassSummary)
+Tobi<- train(brand ~ .,
+             data = training,
+             method = "C5.0",
+             tunelength=2,
+             trControl=ctrl,
+             metric="ROC",
+             preProc = c("center", "scale"))
+levels(CompleteResponses2$brand) <- c("Acer", "Sony")
+ctrl<-trainControl(method="repeatedcv",
+                   repeats=3,
+                   classProbs = TRUE,
+                   summaryFunction=twoClassSummary)
+Tobi<- train(brand ~ .,
+             data = training,
+             method = "C5.0",
+             tunelength=2,
+             trControl=ctrl,
+             metric="ROC",
+             preProc = c("center", "scale"))
+ctrl<-trainControl(method="repeatedcv",
+                   repeats=3,
+                   classProbs = TRUE,
+                   summaryFunction=twoClassSummary)
+ctrl<-trainControl(method="repeatedcv",
+                   repeats=3,
+                   classProbs = TRUE,
+                   summaryFunction=twoClassSummary)
+Tobi2<- train(brand ~ .,
+             data = training,
+             method = "C5.0",
+             tunelength=2,
+             trControl=ctrl,
+            preProc = c("center", "scale"))
+Tobi2
+ctrl<-trainControl(method="repeatedcv",
+                   repeats=3)
+Tobi3<- train(brand ~ .,
+              data = training,
+              method = "C5.0",
+              tunelength=2,
+              trControl=ctrl,
+              preProc = c("center", "scale"))
+Tobi3
+
+plot(Tobi2)
+
+varImp(Tobi3)
+
+#Random FOrest
+
+library(randomForest)
+rf<- randomForest(CompleteResponses2~.,data = training)
+
+
+
+
+

@@ -1,0 +1,94 @@
+head(CompleteResponses)
+summary(CompleteResponses)
+CompleteResponses$elevel<- as.factor(CompleteResponses$elevel)
+CompleteResponses$car<-as.factor(CompleteResponses$car)
+CompleteResponses$zipcode<-as.factor(CompleteResponses$zipcode)
+CompleteResponses$brand<- as.factor(CompleteResponses$brand)
+ggplot(CompleteResponses, aes(x=brand))+
+  geom_bar()
+?ggplot2
+ggplot2:: CompleteResponses aes(x=brand))
+ggplot()
+ggplot(CompleteResponses, aes(x=brand))+
+geom_bar()  
+ggplot(CompleteResponses, aes(x=zipcode))+
+geom_bar()  
+CompleteResponses$elevel<- as.factor(CompleteResponses$elevel)
+CompleteResponses$car<-as.factor(CompleteResponses$car)
+CompleteResponses$zipcode<-as.factor(CompleteResponses$zipcode)
+CompleteResponses$brand<- as.factor(CompleteResponses$brand)
+ggplot(CompleteResponses, aes(x=brand))+
+  geom_bar()
+install.packages(labeled)
+install.packages(labeling)
+ggplot(CompleteResponses, aes(x=brand))+
+  theme_bw()+
+  geom_bar()+
+  labs(y="Brand Count",
+title = "Brand Rates")
+ggplot(CompleteResponses, aes(x=zipcode))+
+  geom_bar() 
+par(mfrow=c(2,2)
+ggplot(CompleteResponses, aes(x=elevel))+
+      geom_bar() 
+ggplot(CompleteResponses, aes(x=car))+
+  geom_bar()     
+ggplot(CompleteResponses, aes(x=car))+
+geom_boxplot()      
+prop.table(table(CompleteResponses$elevel))    
+prop.table(table(CompleteResponses$car))   
+prop.table(table(CompleteResponses$zipcode))    
+prop.table(table(CompleteResponses$brand))     
+ggplot(CompleteResponses, aes(x=zipcode))+
+  theme_bw()+
+  geom_bar()+
+  labs(y="zipcode Count",
+       title = "zipcode") 
+ggplot(CompleteResponses, aes(x=elevel))+
+  theme_bw()+
+  geom_bar()+
+  labs(y="elevel Count",
+       title = "elevel")    
+ggplot(CompleteResponses, aes(x=car))+
+  theme_bw()+
+  geom_bar()+
+  labs(y="car Count",
+       title = "Primary Car")    
+ggplot(CompleteResponses, aes(x=age))+
+  theme_bw()+
+  geom_histogram(binwidth = 5)+
+  labs(y="Age Count",
+       title = "Age Distribution")     
+ggplot(CompleteResponses, aes(x=brand, y=salary))+
+  theme_bw()+
+  geom_boxplot()+
+  labs(y="salary",
+       x= "brand",
+       title = "Brand Distribution by Salary")    
+ggplot(CompleteResponses, aes(x=age, y=brand))+
+  theme_bw()+
+  geom_density(alpha=0.5)+
+  labs(y="age",
+       x= "brand",
+       title = "Brand Distribution by Salary&Age")
+plot(CompleteResponses$age,CompleteResponses$salary)
+library(ggplot2)
+plot(CompleteResponses$age,CompleteResponses$credit)
+plot(CompleteResponses$age,CompleteResponses$elevel)
+plot(CompleteResponses$age,CompleteResponses$car)
+plot(CompleteResponses$age,CompleteResponses$zipcode)
+plot(CompleteResponses$age,CompleteResponses$brand)
+plot(CompleteResponses$age,CompleteResponses$car)
+plot(CompleteResponses$brand,CompleteResponses$salary)
+install.packages(e1071)
+install.packages(doSNOW)
+library(caret)
+library(doSNOW)
+
+
+
+
+
+
+
+

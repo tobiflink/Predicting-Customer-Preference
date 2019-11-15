@@ -1,0 +1,21 @@
+install.packages("caret", dependencies = c("Depends", "Suggests"))
+YEs
+Yes
+library(caret)
+set.seed(998)
+WholeYear<- WholeYear[sample(1:nrow(WholeYear),7000,replace = FALSE),]
+WholeYear <- WholeYear[sample(1:nrow(WholeYear), 7000,replace=FALSE),]       
+head(WholeYear)
+summary(WholeYear)
+inTraining <- createDataPartition(WholeYear$SolarRad, p = .75, list = FALSE)
+trainSize<-round(nrow(WholeYear)*0.75)
+testSize<-nrow(WholeYear)-trainSize
+trainSize
+testSize
+training <- WholeYear[inTraining,]
+training_indices<-sample(seq_len(nrow(WholeYear)),size =trainSize)
+trainSet<-WholeYear[training_indices,]
+testSet<-WholeYear[-training_indices,] 
+fitControl <- (method = "repeatedcv", number = 10, repeats = 1)
+library(CompleteResponses)
+read_csv(CompleteResponses)

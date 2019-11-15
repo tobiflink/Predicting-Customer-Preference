@@ -1,0 +1,16 @@
+install.packages("caret", dependencies = c("Depends", "Suggests"))
+data(Sonar)
+summary(Sonar)
+data
+install.packages(mlbench)
+library(caret)
+data("Sonar")
+set.seed(107)
+inTrain <- createDataPartition(y = Sonar$Class,
+                               + p = .75,
+                               + list = FALSE)
+install.packages("caret")
+library("caret")
+data(Sonar)
+library(CompleteResponses)
+data(CompleteResponses)

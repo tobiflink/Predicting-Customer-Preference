@@ -1,0 +1,4 @@
+head(CompleteResponses)
+summary(CompleteResponses)
+str(CompleteResponses)
+re
